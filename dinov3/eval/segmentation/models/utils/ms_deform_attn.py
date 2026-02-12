@@ -12,6 +12,21 @@ from torch import nn
 from torch.autograd import Function
 from torch.amp import custom_fwd, custom_bwd
 
+'''try:
+    from torch.amp import custom_fwd, custom_bwd
+except ImportError:
+    # PyTorch >= 2.10 compatibility (CPU-safe fallback)
+    def custom_fwd(*args, **kwargs):
+        def wrapper(fn):
+            return fn
+        return wrapper
+
+    def custom_bwd(*args, **kwargs):
+        def wrapper(fn):
+            return fn
+        return wrapper'''
+
+
 from torch.autograd.function import once_differentiable
 from torch.nn.init import constant_, xavier_uniform_
 
